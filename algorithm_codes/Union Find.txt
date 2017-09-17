@@ -1,0 +1,25 @@
+#define Mx 10000000
+
+int arr[Mx];
+
+void init(int n){
+	for(int i = 0;i<n;i++) arr[i] = i;
+}
+
+int root(int i){
+	while(arr[i] != i){
+		i = arr[i];
+	}
+	return i;
+}
+
+void uni(int A,int B){
+	int rA = root(A);
+	int rB = root(B);
+	arr[rB] = rA;
+}
+
+bool find(int A,int B){
+	if(root(A) == root(B)) return true;
+	else return false;
+}
