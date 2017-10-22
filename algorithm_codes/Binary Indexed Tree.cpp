@@ -1,13 +1,17 @@
 //Collected From HackerEarth Fenwick Tree Tutorial
 //Tutorial Link : https://www.hackerearth.com/practice/data-structures/advanced-data-structures/fenwick-binary-indexed-trees/tutorial/
 int BIT[1000], a[1000], n;
-void update(int x, int val)
-{
+void update(int x, int val){
       for(; x <= n; x += x&-x)
         BIT[x] += val;
 }
-int query(int x)
-{
+
+void updateRange(int l,int r,int val){
+     update(l,val);
+     update(r+1,-val);  
+}
+
+int query(int x){
      int sum = 0;
      for(; x > 0; x -= x&-x)
         sum += BIT[x];
@@ -16,14 +20,14 @@ int query(int x)
 
 int main()
 {
-     scanf(ì%dî, &n);
+     scanf(‚Äú%d‚Äù, &n);
      int i;
      for(i = 1; i <= n; i++)
      {
-           scanf(ì%dî, &a[i]);
+           scanf(‚Äú%d‚Äù, &a[i]);
            update(i, a[i]);
      }
-     printf(ìsum of first 10 elements is %d\nî, query(10));
-     printf(ìsum of all elements in range [2, 7] is %d\nî, query(7) ñ query(2-1));
+     printf(‚Äúsum of first 10 elements is %d\n‚Äù, query(10));
+     printf(‚Äúsum of all elements in range [2, 7] is %d\n‚Äù, query(7) ‚Äì query(2-1));
      return 0;
 }
