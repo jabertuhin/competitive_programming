@@ -11,7 +11,8 @@ int binary(int a[],int siz,long long key){
         	if(a[count1] > mid)
             sum += (a[count1]-mid);
         }
-        if(sum >= key){
+        if(sum == key) break;
+        else if(sum > key){
             l = mid;
         }else{
             r = mid;
