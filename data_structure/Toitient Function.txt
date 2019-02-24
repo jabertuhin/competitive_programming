@@ -1,0 +1,13 @@
+int mark[100000],phi[10000];
+void sivephi(){
+	for(int i = 1;i<mx;i++) phi[i] = i;
+	phi[1] = mark[1] =  1;
+	for(int i = 2;i<mx;i++){
+		if(!mark[i]){
+			for(int j = i;j<mx;j++){
+				mark[j] = 1;
+				phi[j] = phi[j]/i*(i-1);
+			}
+		}
+	}
+}

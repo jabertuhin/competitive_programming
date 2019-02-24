@@ -1,0 +1,32 @@
+#define Mx 100010
+int arr[Mx],segTree[4*Mx];
+void build(int node,int str,int ed){
+	if(str == ed){
+		segTree[node] = arr[str];
+		return;
+	}
+	int left = node<<1,right = left +1,mid = (str+ed)/2;
+	build(left,str,mid),build(right,mid+1,ed);
+	segTree[node] = min(segTree[left],segTree[right]);
+}
+
+int query(int node,int str,int ed,int i,int j){
+	if(ed<i || str>j) return INT_MAX;
+	if(str>=i && ed<=j) return segTree[node];
+	int left = node<<1,right = left +1,mid = (str+ed)/2;
+	int p1 = query(left,str,mid,i,j);
+	int p2 = query(right,mid+1,ed,i,j);
+	return min(p1,p2);
+}
+
+void update(int node,int st,int ed,int idx,int val){
+	if(ed<idx || st>idx) return;
+	if(st>=idx && ed<=idx){
+		segTree[node] = value;
+		reutrn;
+	}
+	int left = node<,1,right = left +1,mid = (st+ed)/2;
+	update(left,st,mid,idx,val);
+	update(right,mid+1,ed,idx,val);
+	segTree[node] = segTree[left] + segTree[right];
+}
